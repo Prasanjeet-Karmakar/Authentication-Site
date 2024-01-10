@@ -1,0 +1,49 @@
+.login-container {
+    height: 90vh;
+    width: 100vw;
+}
+
+.login-container > form {
+    margin-top: 5vh;
+    display: flex;
+    height: 60vh;
+    width: 60vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.426);
+    padding: 90px;
+    color: white;
+    font-size: 20px;
+}
+
+input {
+    height: 25px;
+    width: 200px;
+    transition: all 0.5s ease;
+}
+
+input:focus {
+    height: 28px;
+    width: 210px;
+    border-style: none;
+}
+
+button {
+    height: 43px;
+    width: 80px;
+    color: white;
+    background-color: rgba(0, 0, 255, 0.545);
+    border: none;
+    border-radius: 8px;
+    transition: all 0.5s ease;
+}
+
+button:hover {
+    background-color: rgba(111, 0, 255, 0.795);
+}
+

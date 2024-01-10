@@ -1,0 +1,17 @@
+.home-container {
+    text-align: center;
+    height: 90vh;
+    width: 100vw;
+    position: relative;
+}
+
+.home-container > h1 {
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.426);
+    padding: 20px;
+    border-radius: 8px;
+}
