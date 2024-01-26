@@ -27,7 +27,6 @@ router.post("/login", async (req, res) => {
       const match = await bcrypt.compare(req.body.password, user.password);
       console.log(match);
       if (match) {
-        // console.log("User Entered");
         const token = jwt.sign({ userId: user.username }, TOKEN, {
           expiresIn: "1h",
         });

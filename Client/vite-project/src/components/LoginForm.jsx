@@ -14,25 +14,23 @@ const LoginForm = () => {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(userName, password);
     axios
-      .post(`http://localhost:5000/login`, {
+      .post("http://localhost:5000/login", {
         username: userName,
         password: password,
       })
       .then((response) => {
-        const token = response.data.token;
-        if (token) {
-          User.setCurrentUser(token);
-          if (User.currentUser != "") navigate(`/mainpage`);
-        } else {
-          console.log("Access Denied");
-        }
+        console.log(response.status, response.data);
+        User.setCurrentUser(response.data.token);
+        console.log(User.currentUser);
+        navigate("/mainpage");
       })
-      .catch((error) => console.log(error));
-
+      .catch((err) => {
+        console.log(err);
+      });
     setUsername("");
     setPassword("");
   };
