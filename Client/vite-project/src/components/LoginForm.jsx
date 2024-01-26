@@ -14,8 +14,9 @@ const LoginForm = () => {
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(userName, password);
     axios
       .post(`http://localhost:5000/login`, {
         username: userName,
@@ -26,6 +27,8 @@ const LoginForm = () => {
         if (token) {
           User.setCurrentUser(token);
           if (User.currentUser != "") navigate(`/mainpage`);
+        } else {
+          console.log("Access Denied");
         }
       })
       .catch((error) => console.log(error));

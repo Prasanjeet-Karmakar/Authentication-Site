@@ -20,20 +20,26 @@ router.get("/", (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  console.log(req.body.username, req.body.password);
   const user = await User.findOne({ username: req.body.username });
-  try {
-    const match = bcrypt.compare(req.body.password, user.password);
-    if (match) {
-      // console.log("User Entered");
-      const token = jwt.sign({ userId: user.username }, TOKEN, {
-        expiresIn: "1h",
-      });
-      res.status(200).json({ token });
-    } else {
-      return res.status(401).json({ error: "Authentication failed" });
+  if (user) {
+    try {
+      const match = await bcrypt.compare(req.body.password, user.password);
+      console.log(match);
+      if (match) {
+        // console.log("User Entered");
+        const token = jwt.sign({ userId: user.username }, TOKEN, {
+          expiresIn: "1h",
+        });
+        res.status(200).json({ token });
+      } else {
+        return res.status(401).json({ error: "Authentication failed" });
+      }
+    } catch (e) {
+      console.log(e);
     }
-  } catch (e) {
-    console.log(e);
+  } else {
+    res.status(401).json({ error: "No User Found" });
   }
 });
 
